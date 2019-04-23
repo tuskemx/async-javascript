@@ -53,26 +53,40 @@ const fetchCatsByOwner = (name, callback) => {
   });
 };
 
-const fetchAllCats = (callback) => {
-    let array = [];
-    let count = 0;
-    fetchAllOwners(function (error, names){
-    console.log(error, names);
-   names.forEach((name) => fetchCatsByOwner(name, function(error, cats) {
-     array.push(...cats) 
-     count++;
-     if (count === names.length) {
-       array.sort();
-       callback(null, array);
-     }
-     console.log(array);
-     
-   }))
-   })
-  };
+const fetchAllCats = callback => {
+  let array = [];
+  let count = 0;
+  fetchAllOwners(function(error, names) {
+    names.forEach(name =>
+      fetchCatsByOwner(name, function(error, cats) {
+        array.push(...cats);
+        count++;
+        if (count === names.length) {
+          array.sort();
+          callback(null, array);
+        }
+      })
+    );
+  });
+};
 
-
-const fetchOwnersWithCats = () => {};
+const fetchOwnersWithCats = callback => {
+  let ownersWithCats = [];
+  let catReponses = 0;
+  fetchAllOwners((error, ownerNames) => {
+    ownerNames.forEach((ownerName, index) => {
+      fetchCatsByOwner(ownerName, (error, cats) => {
+        catReponses++;
+        const catInfo = {
+          owner: `${ownerName[0].toUpperCase()}${ownerName.slice(1)}`,
+          cats
+        };
+        ownersWithCats[index] = catInfo;
+        if (ownerNames.length === catReponses) callback(null, ownersWithCats);
+      });
+    });
+  });
+};
 
 const kickLegacyServerUntilItWorks = () => {};
 

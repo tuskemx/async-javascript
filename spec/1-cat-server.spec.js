@@ -166,7 +166,7 @@ describe('fetchCatsByOwner', () => {
   });
 });
 
-describe.only('fetchAllCats', () => {
+describe('fetchAllCats', () => {
   it('invokes the callback with no error', done => {
     const testCB = err => {
       expect(err).to.be.null;
@@ -192,7 +192,7 @@ describe.only('fetchAllCats', () => {
   });
 });
 
-describe('fetchOwnersWithCats', () => {
+describe.only('fetchOwnersWithCats', () => {
   it('invokes the callback function with no error', done => {
     const testCB = err => {
       expect(err).to.be.null;
