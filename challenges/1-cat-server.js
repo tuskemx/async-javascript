@@ -24,19 +24,36 @@ const fetchAllOwners = callback => {
   });
 };
 
-const fetchCatPics = () => {}
-
-
+const fetchCatPics = (catPics, callback) => {
+  let newArr = [];
+  if (catPics.length < 1) {
+    callback(null);
+  }
+  catPics.forEach(catPic => {
+    request('/pics/' + `${catPic}`, function(error, cats) {
+      if (error !== null) {
+        newArr.push('placeholder.jpg');
+      } else {
+        newArr.push(cats);
+      }
+      if (newArr === []) {
+      }
+      if (newArr.length === catPics.length) {
+        console.log(error);
+        console.log(newArr);
+        callback(error, newArr);
+      }
+    });
+  });
+};
 
 const fetchCatsByOwner = (name, callback) => {
-  request('/owners/'+`${name}`+'/cats', function(error, cats) {
+  request('/owners/' + `${name}` + '/cats', function(error, cats) {
     callback(error, cats);
   });
 };
 
-const fetchAllCats = () => {
-  
-};
+const fetchAllCats = () => {};
 
 const fetchOwnersWithCats = () => {};
 
