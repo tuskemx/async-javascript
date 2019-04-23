@@ -24,11 +24,19 @@ const fetchAllOwners = callback => {
   });
 };
 
-const fetchCatPics = () => {};
+const fetchCatPics = () => {}
 
-const fetchCatsByOwner = () => {};
 
-const fetchAllCats = () => {};
+
+const fetchCatsByOwner = (name, callback) => {
+  request('/owners/'+`${name}`+'/cats', function(error, cats) {
+    callback(error, cats);
+  });
+};
+
+const fetchAllCats = () => {
+  
+};
 
 const fetchOwnersWithCats = () => {};
 
