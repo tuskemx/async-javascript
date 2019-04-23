@@ -28,7 +28,7 @@ describe('checkServerStatus', () => {
   });
 });
 
-describe.only('fetchBannerContent', () => {
+describe('fetchBannerContent', () => {
   it('invokes the callback with no error', done => {
     const testCB = err => {
       expect(err).to.be.null;
@@ -57,7 +57,7 @@ describe.only('fetchBannerContent', () => {
   });
 });
 
-describe('fetchAllOwners', () => {
+describe.only('fetchAllOwners', () => {
   it('invokes the callback with no error', done => {
     const testCB = err => {
       expect(err).to.be.null;

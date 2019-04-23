@@ -9,15 +9,20 @@ const checkServerStatus = callback => {
 
 const fetchBannerContent = callback => {
   request('/banner', function(error, update) {
-     update.copyrightYear = 2019;
-    callback(error, update)
+    update.copyrightYear = 2019;
+    callback(error, update);
   });
 };
 
-
- 
-
-const fetchAllOwners = () => {};
+const fetchAllOwners = callback => {
+  request('/owners', function(error, names) {
+    const name = names
+      .join(' ')
+      .toLowerCase()
+      .split(' ');
+    callback(error, name);
+  });
+};
 
 const fetchCatPics = () => {};
 
