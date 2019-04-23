@@ -6,7 +6,16 @@ const checkServerStatus = callback => {
     callback(error, output);
   });
 };
-const fetchBannerContent = () => {};
+
+const fetchBannerContent = callback => {
+  request('/banner', function(error, update) {
+     update.copyrightYear = 2019;
+    callback(error, update)
+  });
+};
+
+
+ 
 
 const fetchAllOwners = () => {};
 

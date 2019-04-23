@@ -11,7 +11,7 @@ const {
 } = require('../challenges/1-cat-server');
 const { expect } = require('chai');
 
-describe.only('checkServerStatus', () => {
+describe('checkServerStatus', () => {
   it('invokes the callback with no error', done => {
     const testCB = err => {
       expect(err).to.be.null;
@@ -28,7 +28,7 @@ describe.only('checkServerStatus', () => {
   });
 });
 
-describe('fetchBannerContent', () => {
+describe.only('fetchBannerContent', () => {
   it('invokes the callback with no error', done => {
     const testCB = err => {
       expect(err).to.be.null;
