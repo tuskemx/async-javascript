@@ -1,7 +1,11 @@
 const request = require('../utils/server');
+const { writeFile } = require('fs');
 
-const checkServerStatus = () => {};
-
+const checkServerStatus = callback => {
+  request('/status', function(error, output) {
+    callback(error, output);
+  });
+};
 const fetchBannerContent = () => {};
 
 const fetchAllOwners = () => {};

@@ -11,7 +11,7 @@ const {
 } = require('../challenges/1-cat-server');
 const { expect } = require('chai');
 
-describe('checkServerStatus', () => {
+describe.only('checkServerStatus', () => {
   it('invokes the callback with no error', done => {
     const testCB = err => {
       expect(err).to.be.null;
