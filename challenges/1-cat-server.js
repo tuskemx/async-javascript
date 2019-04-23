@@ -53,7 +53,24 @@ const fetchCatsByOwner = (name, callback) => {
   });
 };
 
-const fetchAllCats = () => {};
+const fetchAllCats = (callback) => {
+    let array = [];
+    let count = 0;
+    fetchAllOwners(function (error, names){
+    console.log(error, names);
+   names.forEach((name) => fetchCatsByOwner(name, function(error, cats) {
+     array.push(...cats) 
+     count++;
+     if (count === names.length) {
+       array.sort();
+       callback(null, array);
+     }
+     console.log(array);
+     
+   }))
+   })
+  };
+
 
 const fetchOwnersWithCats = () => {};
 
